@@ -50,7 +50,9 @@ body {
 .header-container {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--accent-cornflower);
+}
+.portfolio-container{
+border-bottom: 1px solid var(--accent-cornflower);
 }
 .header-nav {
   margin-right: auto;
