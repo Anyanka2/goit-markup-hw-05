@@ -47,6 +47,9 @@ body {
 .section {
   padding-top: 120px;
 }
+.section-portfolio{
+  padding-top: 96px;
+}
 .header-container {
   display: flex;
   align-items: center;
