@@ -521,7 +521,7 @@ img {
   pointer-events: none;
 }
 .backdrop.is-hidden .modal {
-  transform: scale(0);
+  transform: scale(0.9);
 }
 .modal {
   position: relative;
@@ -535,6 +535,7 @@ img {
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   transition: var(--transition-timing-function-hover);
+  transform: scale(1.2);
 }
 .modal-close {
   position: absolute;
