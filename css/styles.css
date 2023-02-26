@@ -11,8 +11,7 @@
   --hero-backgroung-grey: #d9d9d9;
   --text-color-white: #fff;
   --background-color-white: #fff;
-  --transition-timing-function-hover: 250ms
-    cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-hover: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 html {
   scroll-behavior: smooth;
@@ -34,7 +33,6 @@ body {
   line-height: 1.33;
   letter-spacing: 0.03em;
   text-decoration: none;
-  padding: 20px 0;
   margin-right: 76px;
 }
 .logo {
@@ -67,32 +65,33 @@ body {
   gap: 40px;
 }
 .header-link {
-  position: relative;
+  display: block;
+  padding: 20px 0;
   color: var(--dark-navy-blue);
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 0.02em;
   line-height: 1.5;
   text-decoration: none;
-  gap: 40px;
-  padding: 20px 0;
+  transition: background-color var(--transition-hover);
 }
 .header-link:hover,
 .header-link:focus {
   color: var(--pressed-state-ocean);
 }
-.header-link.current::after {
+.current::after {
   position: absolute;
+  display: block;
   bottom: 0;
-  left: 0;
   width: 100%;
   height: 4px;
-  background-color: currentColor;
+  background-color: var(--pressed-state-ocean);
   border-radius: 2px;
   content: '';
 }
-.header-menu li {
-  list-style-type: none;
+.current {
+  position: relative;
+  color: var(--pressed-state-ocean);
 }
 .header-contact {
   color: var(--body-text-slate);
@@ -102,6 +101,7 @@ body {
   line-height: 1.5;
   text-decoration: none;
   padding: 24px 0;
+  transition: background-color var(--transition-hover);
 }
 .header-contact:hover,
 .header-contact:focus {
@@ -139,10 +139,7 @@ img {
   max-width: 100%;
   height: auto;
 }
-:hover,
-:focus {
-  transition: var(--transition-timing-function-hover);
-}
+
 /*common end*/
 /*index*/
 .hero {
@@ -188,6 +185,7 @@ img {
   margin-left: auto;
   margin-right: auto;
   padding: 16px 32px;
+  transition: background-color var(--transition-hover);
 }
 .button-hero:hover,
 .button-hero:focus {
@@ -304,6 +302,7 @@ img {
   height: 100%;
   justify-content: center;
   align-items: center;
+  transition: background-color var(--transition-hover);
 }
 .socials-link:focus,
 .socials-link:hover {
@@ -333,6 +332,7 @@ img {
   height: 100%;
   justify-content: center;
   align-items: center;
+  transition: fill var(--transition-hover), border var(--transition-hover);
 }
 .customers-link:hover,
 .customers-link:focus {
@@ -355,6 +355,8 @@ img {
   border-radius: 4px;
   cursor: pointer;
   padding: 12px 24px;
+  transition: color var(--transition-hover),
+    background-color var(--transition-hover), box-shadow var(--transition-hover);
 }
 .portfolio-button:hover,
 .portfolio-button:focus {
@@ -362,10 +364,6 @@ img {
   background-color: var(--pressed-state-ocean);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-}
-.portfolio-nav li {
-  list-style-type: none;
 }
 .portfolio-nav {
   display: flex;
@@ -413,6 +411,7 @@ img {
   flex-basis: calc((100% - 3 * 24px) / 3);
   margin-left: 24px;
   margin-top: 48px;
+  transition: box-shadow var(--transition-hover);
 }
 .portfolio-img:hover {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
@@ -436,7 +435,7 @@ img {
   background-color: var(--primary-brand-iris);
   color: var(--light-mode-cloud);
   padding: 40px 32px;
-  transition: var(--transition-timing-function-hover);
+  transition: var(--transition-hover);
   transform: translateY(100%);
 }
 
@@ -496,6 +495,7 @@ img {
   height: 100%;
   justify-content: center;
   align-items: center;
+  transition: background-color var(--transition-hover);
 }
 .footer-socials-link:focus,
 .footer-socials-link:hover {
@@ -513,7 +513,8 @@ img {
   width: 100%;
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
-  transition-timing-function: opacity var(--transition-timing-function-hover);
+  transition: opacity var(--transition-hover),
+    visibility var(--transition-hover), pointer-events var(--transition-hover);
 }
 .backdrop.is-hidden {
   opacity: 0;
@@ -521,9 +522,9 @@ img {
   pointer-events: none;
 }
 .backdrop.is-hidden .modal {
-  transform: scale(0.9);
+  transform: scale(0.7);
 }
-.modal {
+.backdrop .modal {
   position: relative;
   overflow: auto;
   width: 100%;
@@ -534,10 +535,10 @@ img {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  transition: var(--transition-timing-function-hover);
+  transition: transform var(--transition-hover);
   transform: scale(1.2);
 }
-.modal-close {
+.close-button {
   position: absolute;
   top: 24px;
   right: 24px;
@@ -553,9 +554,12 @@ img {
   border-radius: 50%;
   cursor: pointer;
   fill: currentColor;
-  transition-timing-function: var(--transition-timing-function-hover);
+  transition: transform var(--transition-hover);
 }
-.icon-close {
+.close-button:hover {
+  background-color: var(--pressed-state-ocean);
+}
+.icon-cross {
   width: 8px;
   height: 8px;
 }
